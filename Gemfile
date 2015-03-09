@@ -49,5 +49,7 @@ group :development, :test do
   gem 'factory_girl_rails'
 
   gem 'devise'
+
+  gem 'database_cleaner'
 end
 
