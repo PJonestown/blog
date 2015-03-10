@@ -2,14 +2,7 @@ require 'rails_helper'
 
 RSpec.describe Post, type: :model do
   
-  let(:admin) { Admin.new( 
-                  email:                  'email@gmail.com',
-                  password:               'foobarfoo',
-                  password_confirmation:  'foobarfoo'        )}
-
-  let!(:post) { admin.posts.new(
-                  title:    'a title',
-                  body:     'a body'                         )}
+  let(:post) { build(:post) }
 
   it 'should be valid' do
     expect(post).to be_valid
@@ -26,8 +19,6 @@ RSpec.describe Post, type: :model do
   end
 
   it 'should have reference to admin' do
-    admin.save
-    post.save
     post.admin = nil
     expect(post).not_to be_valid
   end
