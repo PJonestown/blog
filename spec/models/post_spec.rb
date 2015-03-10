@@ -13,6 +13,11 @@ RSpec.describe Post, type: :model do
     expect(post).not_to be_valid
   end
 
+  it 'should not have a title longer than 140 characters' do
+    post.title = 'a' * 141
+    expect(post).not_to be_valid
+  end
+
   it 'should have a body' do
     post.body = nil
     expect(post).not_to be_valid
