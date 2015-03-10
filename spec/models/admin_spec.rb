@@ -8,6 +8,10 @@ RSpec.describe Admin, type: :model do
     password_confirmation:    'password'
   )}
 
+  it 'has a valid factory' do 
+    expect(FactoryGirl.build(:admin)).to be_valid
+  end
+
   it 'should be valid' do
     expect(admin).to be_valid
   end
