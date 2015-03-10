@@ -23,5 +23,12 @@ RSpec.describe Post, type: :model do
     post.body = nil
     expect(post).not_to be_valid
   end
+
+  it 'should have reference to admin' do
+    admin.save
+    post.save
+    post.admin = nil
+    expect(post).not_to be_valid
+  end
 end
 

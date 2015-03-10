@@ -1,5 +1,5 @@
 class Post < ActiveRecord::Base
   belongs_to :admin
 
-  validates :title, :body, :presence => true
+  validates :title, :body, :admin, :presence => true
 end
