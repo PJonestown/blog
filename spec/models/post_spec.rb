@@ -7,12 +7,12 @@ RSpec.describe Post, type: :model do
                   password_confirmation:  'foobarfoo'
   )}
 
-  let!(:post) { admin.post.new(
+  let!(:post) { admin.posts.new(
                   title:    'a title',
                   body:     'a body'
   )}
 
-  xit 'should be valid' do
+  it 'should be valid' do
     expect(post).to be_valid
   end
 end
