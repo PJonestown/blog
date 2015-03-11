@@ -26,4 +26,17 @@ feature 'Post creation' do
       
     end
   end
+
+  context 'guest user' do
+    scenario 'it does not create a new post' do
+
+      visit root_path
+      expect(page).not_to have_content('New Post')
+
+      visit new_post_path
+      expect(current_path).to eq(root_path)
+      expect(page).to have_content("No soup for you!")
+
+    end
+  end
 end
