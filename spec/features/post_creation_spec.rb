@@ -5,7 +5,24 @@ feature 'Post creation' do
     scenario 'adds a new post' do
       admin = create(:admin)
 
-      visit 
+      visit new_admin_session_path
+      fill_in 'Email', with: admin.email
+      fill_in 'Password', with: admin.password
+      click_button 'Log in'
+
+      expect(current_path).to eq(root_path)
+      expect(page).to have_content('New Post')
+      click_link('New Post')
+      
+      expect(current_path).to eq(new_post_path)
+      fill_in 'Title', with: "A new title"
+      fill_in 'Body', with: "The body"
+      click_button 'Create New Post'
+
+      expect(current_path).to eq(posts_path)
+      expect(page).to have_content 'A new title'
+      click_link 'A new title'
+      
     end
   end
 end
