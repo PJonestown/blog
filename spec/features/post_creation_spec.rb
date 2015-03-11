@@ -21,9 +21,8 @@ feature 'Post creation' do
       expect(page).not_to have_content('Admin')
       click_button 'Create Post'
 
-      expect(current_path).to eq(posts_path)
+      expect(current_path).to eq(root_path)
       expect(page).to have_content 'A new title'
-      click_link 'A new title'
       
     end
   end
