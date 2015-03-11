@@ -3,6 +3,7 @@ require 'rails_helper'
 feature 'Post creation' do
   context 'admin logged in' do
     scenario 'adds a new post' do
+
       admin = create(:admin)
 
       visit new_admin_session_path
@@ -17,7 +18,8 @@ feature 'Post creation' do
       expect(current_path).to eq(new_post_path)
       fill_in 'Title', with: "A new title"
       fill_in 'Body', with: "The body"
-      click_button 'Create New Post'
+      expect(page).not_to have_content('Admin')
+      click_button 'Create Post'
 
       expect(current_path).to eq(posts_path)
       expect(page).to have_content 'A new title'
