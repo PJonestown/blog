@@ -17,7 +17,7 @@ module LoginMacros
   def new_post(title, body)
     visit root_path
     click_link 'New Post'
-    fill_in 'Title', with: title #todo factory?
+    fill_in 'Title', with: title 
     fill_in 'Body', with: body
     click_button 'Create Post'
   end
