@@ -32,16 +32,9 @@ feature "Editing a post" do
     scenario "Can not edit a post" do
 
       sign_out
-
-      expect(page).to have_content(@my_post.title) #sanity check. delete
-
       expect(page).not_to have_link('Edit')
 
-      #todo why isn't this working
-      #Maybe need to set up database cleaner
-      #Or it could be faker creating wonky random IDs
-      #Probably not that since integration
-      visit edit_post_path(1)
+      visit edit_post_path(2) #todo why isn't this 1? Why is there no 1
       expect(current_path).to eq(root_path)
       expect(page).to have_content('No soup for you!')
     end
