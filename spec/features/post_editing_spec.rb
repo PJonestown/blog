@@ -33,7 +33,7 @@ feature "Editing a post" do
 
       sign_out
 
-      expect(page).to have_content(@my_post.title)
+      expect(page).to have_content(@my_post.title) #sanity check. delete
 
       expect(page).not_to have_link('Edit')
 
