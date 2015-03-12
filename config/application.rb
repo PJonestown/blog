@@ -8,6 +8,8 @@ Bundler.require(*Rails.groups)
 
 module Blag
   class Application < Rails::Application
+
+    #devise try that isn NOT working. delete probably
     config.autoload_paths = %W(#{config.root}/lib)
 
 
