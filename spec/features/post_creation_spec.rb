@@ -1,17 +1,12 @@
 require 'rails_helper'
-
-#todo add the type feature thing maybe?
+include LoginMacros
 
 feature 'Post creation' do
   context 'admin logged in' do
     scenario 'adds a new post' do
 
       admin = create(:admin)
-
-      visit new_admin_session_path
-      fill_in 'Email', with: admin.email
-      fill_in 'Password', with: admin.password
-      click_button 'Log in'
+      sign_in admin
 
       expect(current_path).to eq(root_path)
       expect(page).to have_content('New Post')
