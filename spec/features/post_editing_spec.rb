@@ -34,7 +34,6 @@ feature "Editing a post" do
       sign_out
       expect(page).not_to have_link('Edit')
 
-      #save_and_open_page
       #todo this will always pass when using Rrunner by itself
       #however running the full test suite in terminal can lead to failures
       #The post id will either be 2, 3, or 5

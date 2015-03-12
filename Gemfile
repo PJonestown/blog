@@ -21,6 +21,11 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 
 gem 'devise'
 
+gem 'omniauth'
+gem 'omniauth-twitter'
+gem 'omniauth-google'
+gem 'omniauth-github'
+
 group :development, :test do
   gem 'byebug'
   gem 'web-console', '~> 2.0'
