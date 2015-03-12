@@ -14,6 +14,12 @@ module LoginMacros
     click_button 'Log in'
   end
 
+  def sign_out
+    visit root_path
+    click_link 'Sign out'
+    expect(current_path).to eq(root_path)
+  end
+
   def new_post(title, body)
     visit root_path
     click_link 'New Post'

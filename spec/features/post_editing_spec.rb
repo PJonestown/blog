@@ -21,11 +21,21 @@ feature "Editing a post" do
       click_link 'Edit'
       fill_in 'Title', with: 'Brand new title'
       click_button 'Update Post'
-      
-      expect(current_path).to eq(root_path)
+
       expect(page).not_to have_content(@my_post.title)
       expect(page).to have_content('Brand new title')
 
+    end
+  end
+
+  context "guest user" do
+    scenario "Can not edit a post" do
+
+      sign_out
+
+      expect(page).to have_content(@my_post.title)
+
+      expect(page).not_to have_link('Edit')
     end
   end
 end
