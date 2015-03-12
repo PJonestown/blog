@@ -14,11 +14,11 @@ module LoginMacros
     click_button 'Log in'
   end
 
-  def new_post
+  def new_post(title, body)
     visit root_path
     click_link 'New Post'
-    fill_in title, with: 'A new title' #todo factory?
-    fill_in body, with: 'A new body'
+    fill_in 'Title', with: title #todo factory?
+    fill_in 'Body', with: body
     click_button 'Create Post'
   end
 end

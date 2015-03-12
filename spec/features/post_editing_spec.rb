@@ -1,4 +1,4 @@
-require "Rails_helper"
+require "rails_helper"
 include LoginMacros
 
 feature "Editing a post" do
@@ -7,14 +7,14 @@ feature "Editing a post" do
     admin = create(:admin)
     sign_in admin
 
-    new_post
+    new_post('A new title', 'A new body') 
+
 
   end
   context "Logged in admin" do
     scenario "Edits post" do
+      expect(page).to have_content('A new title')
 
-
-      visit_root_path
     end
   end
 end
