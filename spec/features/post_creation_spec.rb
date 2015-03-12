@@ -1,5 +1,7 @@
 require 'rails_helper'
 
+#todo add the type feature thing maybe?
+
 feature 'Post creation' do
   context 'admin logged in' do
     scenario 'adds a new post' do
