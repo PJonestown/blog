@@ -2,15 +2,6 @@ class PostsController < ApplicationController
   before_action :set_post, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_admin!, :except =>[:show, :index] 
 
-  def authenticate_admin!
-    if admin_signed_in?
-      return true
-    else
-      redirect_to root_path
-      flash[:alert] = "No soup for you!"
-    end
-  end
-
   # GET /posts
   # GET /posts.json
   def index
@@ -82,4 +73,14 @@ class PostsController < ApplicationController
     def post_params
       params.require(:post).permit(:title, :body, :admin_id)
     end
+
+    def authenticate_admin!
+      if admin_signed_in?
+        return true
+      else
+        redirect_to root_path
+        flash[:alert] = "No soup for you!"
+      end
+    end
+
 end
