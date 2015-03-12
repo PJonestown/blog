@@ -7,13 +7,14 @@ feature "Editing a post" do
     admin = create(:admin)
     sign_in admin
 
-    new_post('A new title', 'A new body') 
+    @my_post = build(:post)
+    new_post(@my_post.title, @my_post.body) 
 
 
   end
   context "Logged in admin" do
     scenario "Edits post" do
-      expect(page).to have_content('A new title')
+      expect(page).to have_content(@my_post.title)
 
     end
   end
