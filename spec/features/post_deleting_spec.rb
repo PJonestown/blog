@@ -19,4 +19,12 @@ feature 'deleting a post' do
       expect(page).not_to have_content(@my_post.title)
     end
   end
+
+  context 'guest user' do
+    scenario 'it does not delete post' do
+      sign_out
+      expect(current_path).to eq(root_path)
+      expect(page).not_to have_content('Destroy')
+    end
+  end
 end
