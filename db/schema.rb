@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150315203148) do
+ActiveRecord::Schema.define(version: 20150315205441) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -53,6 +53,16 @@ ActiveRecord::Schema.define(version: 20150315203148) do
   add_index "commenters", ["email"], name: "index_commenters_on_email", unique: true, using: :btree
   add_index "commenters", ["reset_password_token"], name: "index_commenters_on_reset_password_token", unique: true, using: :btree
 
+  create_table "identities", force: :cascade do |t|
+    t.string   "provider"
+    t.string   "uid"
+    t.integer  "commenter_id"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+  end
+
+  add_index "identities", ["commenter_id"], name: "index_identities_on_commenter_id", using: :btree
+
   create_table "posts", force: :cascade do |t|
     t.string   "title"
     t.text     "body"
@@ -63,5 +73,6 @@ ActiveRecord::Schema.define(version: 20150315203148) do
 
   add_index "posts", ["admin_id"], name: "index_posts_on_admin_id", using: :btree
 
+  add_foreign_key "identities", "commenters"
   add_foreign_key "posts", "admins"
 end
