@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  devise_for :commenters
   devise_for :admins
   resources :posts
 
