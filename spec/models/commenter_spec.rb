@@ -10,5 +10,10 @@ RSpec.describe Commenter, type: :model do
   it "should have an array of identities" do
     expect(commenter.identities).to eq([])
   end
+
+  it "is invalid without an identity" do
+    commenter.identities = nil
+    expect(commenter.identities).not_to be_valid
+  end
 end
 
