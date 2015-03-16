@@ -8,7 +8,7 @@ class OmniauthCallbacksController < Devise::OmniauthCallbacksController
                                          current_commenter)
         if @commenter.persisted?
           sign_in_and_redirect @commenter, event: :authentication
-          flash[:notice] = "Signed in"
+          flash[:notice] = "Signed in #{provider}"
 
       
         else
