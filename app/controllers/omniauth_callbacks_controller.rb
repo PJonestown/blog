@@ -5,6 +5,9 @@ class OmniauthCallbacksController < Devise::OmniauthCallbacksController
     @commenter = Commenter.find_for_oath(env["omniauth.auth"],
                                          current_commenter)
     if @commenter.persisted?
+      sign_in_and_redirect @commenter, event: :authentication
+      flash[:notice] = "Signed in"
+
       
     else
 
