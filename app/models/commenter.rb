@@ -20,7 +20,7 @@ class Commenter < ActiveRecord::Base
 
       email = authinfo.email if email_is_verified
 
-      commenter = Comenter.where(:email => email).first if email
+      commenter = Commenter.where(:email => email).first if email
 
       if commenter.nil?
         commenter = Commenter.new(
