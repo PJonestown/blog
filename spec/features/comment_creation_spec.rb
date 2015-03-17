@@ -16,6 +16,7 @@ feature 'comment creation on posts' do
 
       visit posts_path
       click_link @new_post.title
+      click_link "Reply"
 
   
 

@@ -27,5 +27,10 @@ RSpec.describe Post, type: :model do
     post.admin = nil
     expect(post).not_to be_valid
   end
+
+  it 'should have somments' do
+    expect(post.comments).to eq([])
+  end
+
 end
 
