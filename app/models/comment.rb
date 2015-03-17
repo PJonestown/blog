@@ -1,4 +1,7 @@
 class Comment < ActiveRecord::Base
+
+  has_ancestry
+
   belongs_to :commenter
 
   belongs_to :post, :polymorphic => true
