@@ -15,7 +15,6 @@ feature 'comment creation on posts' do
     scenario 'adds a new comment' do
 
       visit posts_path
-      save_and_open_page
       click_link @new_post.title
 
   
