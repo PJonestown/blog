@@ -5,6 +5,7 @@ class Commenter < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
 
   has_many :identities
+  has_many :comments
 
   TEMP_EMAIL_PREFIX = 'change@me'
 

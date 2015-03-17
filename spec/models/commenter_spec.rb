@@ -11,5 +11,9 @@ RSpec.describe Commenter, type: :model do
     expect(commenter.identities).to eq([])
   end
 
+  it 'should have an array of comments' do
+    expect(commenter.comments).to eq([])
+  end
+
 end
 
