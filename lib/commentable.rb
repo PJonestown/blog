@@ -1,6 +1,6 @@
 require 'active_support'
 
-module Blag::Commentable
+module Commentable
   extend ActiveSupport::Concern
 
   def comments
