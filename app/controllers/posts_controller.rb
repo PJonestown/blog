@@ -14,6 +14,10 @@ class PostsController < ApplicationController
   # GET /posts/1
   # GET /posts/1.json
   def show
+    @commentable = find_commentable
+    @comments = @commentable.comments
+    @comment = Comment.new 
+    
     #@comment = @post.comments.build(params[:comment])
     #@comment.commentable_type = 'Post'
     #@comment.commenter = current_commenter
