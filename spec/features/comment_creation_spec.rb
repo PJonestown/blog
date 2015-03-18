@@ -22,6 +22,7 @@ feature 'comment creation on posts' do
       fill_in 'Body', with: 'A brand new comment'
       click_button 'Create Comment'
       expect(current_path).to eq(post_path(@new_post))
+      save_and_open_page
       expect(page).to have_content('A brand new comment')
   
 
