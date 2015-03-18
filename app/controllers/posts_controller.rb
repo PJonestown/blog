@@ -14,6 +14,7 @@ class PostsController < ApplicationController
     @comment = @post.comments.build(params[:comment])
     @comment.commentable_type = 'Post'
     @comment.commenter = current_commenter
+    @comments = @post.comments
   end
 
   # GET /posts/new
