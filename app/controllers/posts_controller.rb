@@ -14,6 +14,8 @@ class PostsController < ApplicationController
   # GET /posts/1
   # GET /posts/1.json
   def show
+    #todo why isn't this already defined in module?
+
     @commentable = find_commentable
     @comments = @commentable.comments
     @comment = Comment.new 
