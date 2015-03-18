@@ -37,6 +37,9 @@ class CommentsController < ApplicationController
     @commentable = find_commentable
     @comment = @commentable.comments.build(comment_params) do |c|
       #todo doesn't work for admin, but does for commenter
+      # commenter is referenced to commenters. Either need to
+      # make a can_comment polymorphic association
+      # Or not have the feature
       if admin_signed_in?
         c.commenter = current_admin
       else
