@@ -35,7 +35,14 @@ class CommentsController < ApplicationController
   def create
     #@comment = Comment.new(comment_params)
     @commentable = find_commentable
-    @comment = @commentable.comments.build(comment_params)
+    @comment = @commentable.comments.build(comment_params) do |c|
+      #todo doesn't work for admin, but does for commenter
+      if admin_signed_in?
+        c.commenter = current_admin
+      else
+        c.commenter = current_commenter
+      end
+    end
 
     respond_to do |format|
       if @comment.save
