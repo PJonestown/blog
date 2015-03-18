@@ -1,5 +1,7 @@
 class PostsController < ApplicationController
-  include Blag::Commentable
+  #include Blag::Commentable
+
+  include Commentable
   before_action :set_post, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_admin!, :except =>[:show, :index] 
 
