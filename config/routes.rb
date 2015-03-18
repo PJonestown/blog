@@ -4,7 +4,9 @@ Rails.application.routes.draw do
   devise_for :commenters, 
     controllers: {omniauth_callbacks: "omniauth_callbacks" }
   devise_for :admins
-  resources :posts
+  resources :posts do
+    resources :comments
+  end
 
   root to: "posts#index"
 
