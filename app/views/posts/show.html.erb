@@ -10,10 +10,6 @@
   <%= @post.body %>
 </p>
 
-<p>
-  <strong>Admin:</strong>
-  <%= @post.admin %>
-</p>
 
 <% if admin_signed_in? %>
   <%= link_to 'Edit', edit_post_path(@post) %> |
