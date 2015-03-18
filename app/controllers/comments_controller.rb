@@ -35,7 +35,7 @@ class CommentsController < ApplicationController
   def create
     #@comment = Comment.new(comment_params)
     @commentable = find_commentable
-    @comment = @commentable.comments.build(params[:comment_params])
+    @comment = @commentable.comments.build(comment_params)
 
     respond_to do |format|
       if @comment.save
