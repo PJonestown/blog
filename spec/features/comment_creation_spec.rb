@@ -19,6 +19,9 @@ feature 'comment creation on posts' do
 
       visit posts_path
       click_link @new_post.title
+      fill_in 'Body', with: 'A brand new comment'
+      click_button 'Create Comment'
+      expect(current_path).to eq(post_path(@new_post))
   
 
     end
