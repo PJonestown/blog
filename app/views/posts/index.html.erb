@@ -17,7 +17,6 @@
       <tr>
         <td><%= link_to post.title, post %></td>
         <td><%= post.body %></td>
-        <td><%= post.admin %></td>
         <td><%= link_to 'Show', post %></td>
         <% if admin_signed_in? %>
           <td><%= link_to 'Edit', edit_post_path(post) %></td>
