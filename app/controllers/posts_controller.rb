@@ -14,10 +14,11 @@ class PostsController < ApplicationController
   # GET /posts/1
   # GET /posts/1.json
   def show
-    @comment = @post.comments.build(params[:comment])
-    @comment.commentable_type = 'Post'
-    @comment.commenter = current_commenter
-    @comments = @post.comments
+    #@comment = @post.comments.build(params[:comment])
+    #@comment.commentable_type = 'Post'
+    #@comment.commenter = current_commenter
+    #@comments = @post.comments
+
   end
 
   # GET /posts/new

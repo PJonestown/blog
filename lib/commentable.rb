@@ -6,7 +6,8 @@ module Commentable
   def comments
     @commentable = find_commentable
     @comments = @commentable.comments
-    @comment = current_commenter.comments.new #todo maybe cchange
+    #@comment = current_commenter.comments.new #todo maybe cchange
+    @comment = Comment.new
   end
 
   private
