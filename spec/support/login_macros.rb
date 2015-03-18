@@ -27,4 +27,11 @@ module LoginMacros
     fill_in 'Body', with: body
     click_button 'Create Post'
   end
+
+  def commenter_sign_in(commenter)
+    visit new_commenter_session_path
+    fill_in 'Email', with: commenter.email
+    fill_in 'Password', with: commenter.password
+    click_button 'Log in'
+  end
 end
