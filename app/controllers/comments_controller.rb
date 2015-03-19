@@ -1,75 +1,31 @@
 class CommentsController < ApplicationController
   before_action :set_comment, only: [:show, :edit, :update, :destroy]
 
-  # GET /comments
-  # GET /comments.json
   def index
     @comments = Comment.all
   end
 
-  # GET /comments/1
-  # GET /comments/1.json
   def show
   end
 
-  # GET /comments/new
   def new
     @parent_id = params.delete(:parent_id)
     @commentable = find_commentable
-    #@owner = find_owner
-    #@comment = Comment.new(comment_params)
-    @owner = 
-      if admin_signed_in?
-        @owner.type = 'Admin'
-        @owner.id = 1
-      elsif
-        commenter_signed_in?
-        type = 'Commenter'
-        id = @commenter.id
-      end
-
-
     @comment = Comment.new( :parent_id => @parent_id,
                             :commentable_id => @commentable.id,
-                            :commentable_type => @commentable.class.to_s,
-                            #todo experiment deleting these
-                            :owner_type => @owner.class.to_s,
-                            :owner_id => @owner.id
-                          )
-    #@comment.parent_id = @parent_id
-    #@comment.commentable_id = @commentable.id
-    #@comment.commentable_type = @commentable.class.to_s
+                            :commentable_type => @commentable.class.to_s)
   end
 
-  # GET /comments/1/edit
   def edit
   end
 
-  # POST /comments
-  # POST /comments.json
   def create
-   # @owner = 
-    #  if admin_signed_in?
-     #   @owner.type = 'Admin'
-      #  @owner.id = 1
-      #elsif
-       # commenter_signed_in?
-       # type = 'Commenter'
-       # id = @commenter.id
-      #end
-    #@comment = Comment.new(comment_params)
-    #@owner = find_owner
     @commentable = find_commentable
-    @comment = @commentable.comments.build(comment_params)# do |c|
-      #c.owner_type = @owner.class.to_s
-      #c.owner_id = @owner.id
+    @comment = @commentable.comments.build(comment_params)
     find_owner(@comment)
-
-    #end
 
     respond_to do |format|
       if @comment.save
-        #format.html { redirect_to @comment, notice: 'Comment was successfully created.' }
         format.html { redirect_to @commentable, notice: 'Comment was successfully created.' }
         format.json { render :show, status: :created, location: @comment }
       else
@@ -79,8 +35,6 @@ class CommentsController < ApplicationController
     end
   end
 
-  # PATCH/PUT /comments/1
-  # PATCH/PUT /comments/1.json
   def update
     respond_to do |format|
       if @comment.update(comment_params)
@@ -93,8 +47,6 @@ class CommentsController < ApplicationController
     end
   end
 
-  # DELETE /comments/1
-  # DELETE /comments/1.json
   def destroy
     @comment.destroy
     respond_to do |format|
@@ -104,12 +56,10 @@ class CommentsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
     def set_comment
       @comment = Comment.find(params[:id])
     end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
     def comment_params
       params.require(:comment).permit(
         :body, 
@@ -120,6 +70,7 @@ class CommentsController < ApplicationController
       )
     end
 
+    #Ryan Bates black magic
     def find_commentable
       params.each do |name, value|
         if name =~ /(.+)_id$/
