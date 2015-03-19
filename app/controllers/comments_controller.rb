@@ -16,11 +16,23 @@ class CommentsController < ApplicationController
   def new
     @parent_id = params.delete(:parent_id)
     @commentable = find_commentable
-    @owner = find_owner
+    #@owner = find_owner
     #@comment = Comment.new(comment_params)
+    @owner = 
+      if admin_signed_in?
+        @owner.type = 'Admin'
+        @owner.id = 1
+      elsif
+        commenter_signed_in?
+        type = 'Commenter'
+        id = @commenter.id
+      end
+
+
     @comment = Comment.new( :parent_id => @parent_id,
                             :commentable_id => @commentable.id,
                             :commentable_type => @commentable.class.to_s,
+                            #todo experiment deleting these
                             :owner_type => @owner.class.to_s,
                             :owner_id => @owner.id
                           )
@@ -36,10 +48,24 @@ class CommentsController < ApplicationController
   # POST /comments
   # POST /comments.json
   def create
+   # @owner = 
+    #  if admin_signed_in?
+     #   @owner.type = 'Admin'
+      #  @owner.id = 1
+      #elsif
+       # commenter_signed_in?
+       # type = 'Commenter'
+       # id = @commenter.id
+      #end
     #@comment = Comment.new(comment_params)
+    #@owner = find_owner
     @commentable = find_commentable
-    @comment = @commentable.comments.build(comment_params) do |c|
-    end
+    @comment = @commentable.comments.build(comment_params)# do |c|
+      #c.owner_type = @owner.class.to_s
+      #c.owner_id = @owner.id
+    find_owner(@comment)
+
+    #end
 
     respond_to do |format|
       if @comment.save
@@ -103,14 +129,15 @@ class CommentsController < ApplicationController
       nil
     end
 
-    def find_owner
-      params.each do |name, value|
-        if name =~ /(.+)_id$/
-          return $1.classify.constantize.find(value)
-        end
+    def find_owner(comment)
+      if admin_signed_in?
+        comment.owner_type = 'Admin'
+        comment.owner_id = current_admin.id
+      elsif commenter_signed_in?
+        comment.owner_type = 'Commenter'
+        comment.owner_id = current_commenter.id
       end
-      nil
     end
 
-
 end
+

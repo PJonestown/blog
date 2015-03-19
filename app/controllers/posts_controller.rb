@@ -15,6 +15,16 @@ class PostsController < ApplicationController
   # GET /posts/1.json
   def show
     #todo why isn't this already defined in module?
+    #
+    @owner = 
+      if admin_signed_in?
+        type = 'Admin'
+        id = 1
+      elsif
+        commenter_signed_in?
+        type = 'Commenter'
+        id = @commenter.id
+      end
 
     @commentable = find_commentable
     @comments = @commentable.comments
