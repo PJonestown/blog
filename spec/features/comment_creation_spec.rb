@@ -44,12 +44,13 @@ feature 'comment creation on posts' do
     scenario 'does not add a comment' do
       visit post_path(@new_post)
       expect(page).to have_content 'Sign In to comment'
-      expect(page).to have_link('Sign in with twitter')
-      expect(page).to have_link('Sign in with github')
+      expect(page).to have_link('Sign In with Twitter')
+      expect(page).to have_link('Sign In with Github')
       fill_in 'Body', with: 'this is gonna fail'
       click_button 'Create Comment'
       expect(current_path).to eq(post_path(@new_post))
-      expect
+      expect(page).not_to have_content('this is gonna fail')
+      expect(page).to have_content('No soup for you!')
     end
   end
 end

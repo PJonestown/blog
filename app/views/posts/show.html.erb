@@ -25,7 +25,13 @@
   </p>
 <% else %>
   <%= "Sign In to comment" %>
+  <ul>
+    <li>
+    <A href= "/commenters/auth/twitter">Sign In with Twitter </A>
+    <A href= "/commenters/auth/github">Sign In with Github</A>
+  </li>
 <%end%>
+
 <%=  render 'comments/form' %>
 
 <%=  nested_comments(@comments) %>
