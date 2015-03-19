@@ -16,15 +16,11 @@ feature 'comment creation on posts' do
     end
 
     scenario 'adds a new comment' do
-
-      visit posts_path
-      click_link @new_post.title
+      visit post_path(@new_post)
       fill_in 'Body', with: 'A brand new comment'
       click_button 'Create Comment'
       expect(current_path).to eq(post_path(@new_post))
       expect(page).to have_content('A brand new comment')
-  
-
     end
   end
 
@@ -40,6 +36,20 @@ feature 'comment creation on posts' do
       click_button 'Create Comment'
       expect(current_path).to eq(post_path(@new_post))
       expect(page).to have_content('Admins can comment too!')
+    end
+  end
+
+  context 'guest user' do
+
+    scenario 'does not add a comment' do
+      visit post_path(@new_post)
+      expect(page).to have_content 'Sign In to comment'
+      expect(page).to have_link('Sign in with twitter')
+      expect(page).to have_link('Sign in with github')
+      fill_in 'Body', with: 'this is gonna fail'
+      click_button 'Create Comment'
+      expect(current_path).to eq(post_path(@new_post))
+      expect
     end
   end
 end
