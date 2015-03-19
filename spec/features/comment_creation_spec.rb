@@ -11,12 +11,15 @@ feature 'comment creation on posts' do
   context 'commenter logged in' do
 
     background do
-      commenter = create(:commenter)
-      commenter_sign_in(commenter)
+      @commenter = create(:commenter)
+      commenter_sign_in(@commenter)
     end
 
     scenario 'adds a new comment' do
       visit post_path(@new_post)
+      #expect(page).to have_content("Signed in as #{@commenter.name} from 
+                                   #{@commenter.identities.provider}")
+      expect(page).to have_link("Sign Out")
       fill_in 'Body', with: 'A brand new comment'
       click_button 'Create Comment'
       expect(current_path).to eq(post_path(@new_post))

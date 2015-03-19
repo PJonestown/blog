@@ -20,9 +20,10 @@
     <%= "Signed in as #{current_admin}" %>
   </p>
 <%elsif commenter_signed_in? %>
-  <p>
-    <%= "Signed in as #{current_commenter}" %>
-  </p>
+  <ul>
+    <li><%= "Signed in as #{current_commenter}" %></li>
+    <li><%=link_to("Sign Out", destroy_commenter_session_path, :method => :delete)%></li> 
+  </ul>
 <% else %>
   <%= "Sign In to comment" %>
   <ul>
