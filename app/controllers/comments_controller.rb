@@ -16,10 +16,13 @@ class CommentsController < ApplicationController
   def new
     @parent_id = params.delete(:parent_id)
     @commentable = find_commentable
+    @owner = find_owner
     #@comment = Comment.new(comment_params)
     @comment = Comment.new( :parent_id => @parent_id,
                             :commentable_id => @commentable.id,
-                            :commentable_type => @commentable.class.to_s
+                            :commentable_type => @commentable.class.to_s,
+                            :owner_type => @owner.class.to_s,
+                            :owner_id => @owner.id
                           )
     #@comment.parent_id = @parent_id
     #@comment.commentable_id = @commentable.id
@@ -99,4 +102,15 @@ class CommentsController < ApplicationController
       end
       nil
     end
+
+    def find_owner
+      params.each do |name, value|
+        if name =~ /(.+)_id$/
+          return $1.classify.constantize.find(value)
+        end
+      end
+      nil
+    end
+
+
 end

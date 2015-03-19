@@ -2,7 +2,7 @@ class Comment < ActiveRecord::Base
 
   has_ancestry
 
-  belongs_to :owner, :polymoprhic => true
+  belongs_to :owner, :polymorphic => true
 
   belongs_to :post, :polymorphic => true
 
