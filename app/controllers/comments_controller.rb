@@ -1,6 +1,6 @@
 class CommentsController < ApplicationController
   before_action :set_comment, only: [:show, :edit, :update, :destroy]
-  before_filter :authenticate_commenter!, :except => [:show, :index]
+  before_action :authenticate_commenter!, :except => [:show, :index]
 
   def index
     @comments = Comment.all
