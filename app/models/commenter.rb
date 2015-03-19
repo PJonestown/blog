@@ -12,19 +12,17 @@ class Commenter < ActiveRecord::Base
   def self.find_for_oath(auth, signed_in_resource = nil)
 
     identity = Identity.find_for_oath(auth)
-
     commenter = signed_in_resource ? signed_in_resource : identity.commenter
 
     if commenter.nil?
-
       email_is_verified = auth.info.email && (auth.info.verified || auth.info.verified_email)
-
       email = authinfo.email if email_is_verified
-
       commenter = Commenter.where(:email => email).first if email
 
+      #create commenter if new registration
       if commenter.nil?
         commenter = Commenter.new(
+          name: auth.extra.raw_info.name,
           email: email ? email : "#{TEMP_EMAIL_PREFIX}-#{auth.uid}-#{auth.provider}.com",
           password: Devise.friendly_token[0,20]
         )

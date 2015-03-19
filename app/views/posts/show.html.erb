@@ -21,7 +21,7 @@
   </p>
 <%elsif commenter_signed_in? %>
   <ul>
-    <li><%= "Signed in as #{current_commenter}" %></li>
+    <li><%= "Signed in as #{current_commenter.name} with" %></li>
     <li><%=link_to("Sign Out", destroy_commenter_session_path, :method => :delete)%></li> 
   </ul>
 <% else %>
@@ -29,6 +29,8 @@
   <ul>
     <li>
     <A href= "/commenters/auth/twitter">Sign In with Twitter </A>
+    </li>
+    <li>
     <A href= "/commenters/auth/github">Sign In with Github</A>
   </li>
 <%end%>
