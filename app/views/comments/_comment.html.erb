@@ -1,7 +1,7 @@
 <div class="media-body">
   <h4 class="media-heading">
     <%= comment.owner_type %>
-    <%= @owner %>
+    <%= comment.owner_id%>
   </h4>
   <i>
     <%= comment.created_at.strftime('%b %d, %Y at %H:%M') %>
@@ -9,5 +9,7 @@
   <p>
     <%= simple_format comment.body %>
   </p>
+  <%= link_to "Reply", new_polymorphic_path([@commentable, Comment.new],
+                                            :parent_id => comment) %>
   <%= nested_comments comment.children %>
 </div>
