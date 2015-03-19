@@ -15,6 +15,17 @@
   <%= link_to 'Edit', edit_post_path(@post) %> |
 <% end %>
 
+<% if admin_signed_in? %>
+  <p>
+    <%= "Signed in as #{current_admin}" %>
+  </p>
+<%elsif commenter_signed_in? %>
+  <p>
+    <%= "Signed in as #{current_commenter}" %>
+  </p>
+<% else %>
+  <%= "Sign In to comment" %>
+<%end%>
 <%=  render 'comments/form' %>
 
 <%=  nested_comments(@comments) %>
