@@ -1,6 +1,7 @@
 <div class="media-body">
   <h4 class="media-heading">
-    <%= comment.commenter %>
+    <%= comment.owner_type %>
+    <%= @owner %>
   </h4>
   <i>
     <%= comment.created_at.strftime('%b %d, %Y at %H:%M') %>

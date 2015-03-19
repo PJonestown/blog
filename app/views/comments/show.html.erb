@@ -6,7 +6,7 @@
 </p>
 
 <p>
-  <strong>Commentable:</strong>
+  <strong>Commentable ID:</strong>
   <%= @comment.commentable_id %>
 </p>
 
@@ -16,8 +16,13 @@
 </p>
 
 <p>
-  <strong>Commenter:</strong>
-  <%= @comment.commenter %>
+  <strong>Owner ID:</strong>
+  <%= @comment.owner_id %>
+</p>
+
+<p>
+  <strong>Owner Type:</strong>
+  <%= @comment.owner_type %>
 </p>
 
 <%= link_to 'Edit', edit_comment_path(@comment) %> |

@@ -19,7 +19,9 @@
         <td><%= comment.body %></td>
         <td><%= comment.commentable_id %></td>
         <td><%= comment.commentable_type %></td>
-        <td><%= comment.commenter %></td>
+        <td><%= comment.owner_type %></td>
+        <td><%= comment.owner_id %></td>
+
         <td><%= link_to 'Show', comment %></td>
         <td><%= link_to 'Edit', edit_comment_path(comment) %></td>
         <td><%= link_to 'Destroy', comment, method: :delete, data: { confirm: 'Are you sure?' } %></td>
