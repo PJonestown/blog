@@ -15,6 +15,7 @@ class PostsController < ApplicationController
     @commentable = find_commentable
     @comments = @commentable.comments
     @comment = Comment.new 
+
   end
 
   def new
