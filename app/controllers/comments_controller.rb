@@ -10,9 +10,8 @@ class CommentsController < ApplicationController
   end
 
   def new
-    @parent_id = params.delete(:parent_id)
-    @comment = Comment.new
-                          
+    #@parent_id = params.delete(:parent_id)
+    @comment = Comment.new(:parent_id => params[:parnet_id])
   end
 
 
@@ -20,11 +19,12 @@ class CommentsController < ApplicationController
   end
 
   def create
+    @comment = Comment.new(comment_params[:comment])
     find_owner(@comment)
 
     respond_to do |format|
       if @comment.save
-        format.html { redirect_to @commentable, notice: 'Comment was successfully created.' }
+        format.html { redirect_to :back, notice: 'Comment was successfully created.' }
         format.json { render :show, status: :created, location: @comment }
       else
         format.html { render :new }
