@@ -12,9 +12,9 @@ class CommentsController < ApplicationController
   def new
     @parent_id = params.delete(:parent_id)
     @comment = Comment.new( :parent_id => @parent_id,
-                            :commentable_id => @commentable.id,
-                            :commentable_type => @commentable.class.to_s)
+                          )
   end
+
 
   def edit
   end
@@ -62,7 +62,7 @@ class CommentsController < ApplicationController
       params.require(:comment).permit(
         :body, 
         :owner_type,
-        :owner_id 
+        :owner_id
       )
     end
 
