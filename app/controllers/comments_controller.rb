@@ -62,7 +62,8 @@ class CommentsController < ApplicationController
       params.require(:comment).permit(
         :body, 
         :owner_type,
-        :owner_id
+        :owner_id,
+        :post_id
       )
     end
 
