@@ -1,6 +1,5 @@
 class PostsController < ApplicationController
 
-  include Commentable
   before_action :set_post, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_admin!, :except =>[:show, :index] 
 
@@ -10,10 +9,7 @@ class PostsController < ApplicationController
 
   def show
 
-    #todo why isn't this already defined in module?
-
-    @commentable = find_commentable
-    @comments = @commentable.comments
+    @comments = @post.comments
     @comment = Comment.new 
 
   end
