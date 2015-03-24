@@ -9,7 +9,7 @@
   <p>
     <%= simple_format comment.body %>
   </p>
-  <%= link_to "Reply", new_polymorphic_path([@commentable, Comment.new],
-                                            :parent_id => comment) %>
+  <%= link_to "Reply", new_comment_path(:parent_id => comment) %>
+
   <%= nested_comments comment.children %>
 </div>

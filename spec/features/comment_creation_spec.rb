@@ -64,8 +64,6 @@ feature 'comment creation' do
     background do 
       @new_post = create(:post)
       @new_comment = @new_post.comments.create(body: "comment body",
-                                              commentable_type: 'Post',
-                                              commentable_id: '1',
                                               owner_type: 'Admin',
                                               owner_id: '1')
     end
