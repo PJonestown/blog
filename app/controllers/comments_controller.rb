@@ -11,7 +11,6 @@ class CommentsController < ApplicationController
 
   def new
     @parent_id = params.delete(:parent_id)
-    @commentable = find_commentable
     @comment = Comment.new( :parent_id => @parent_id,
                             :commentable_id => @commentable.id,
                             :commentable_type => @commentable.class.to_s)
@@ -21,8 +20,6 @@ class CommentsController < ApplicationController
   end
 
   def create
-    @commentable = find_commentable
-    @comment = @commentable.comments.build(comment_params)
     find_owner(@comment)
 
     respond_to do |format|
