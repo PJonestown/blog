@@ -11,8 +11,8 @@ class CommentsController < ApplicationController
 
   def new
     @parent_id = params.delete(:parent_id)
-    @comment = Comment.new( :parent_id => @parent_id,
-                          )
+    @comment = Comment.new
+                          
   end
 
 
