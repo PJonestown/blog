@@ -71,16 +71,6 @@ class CommentsController < ApplicationController
       )
     end
 
-    #Ryan Bates black magic
-    def find_commentable
-      params.each do |name, value|
-        if name =~ /(.+)_id$/
-          return $1.classify.constantize.find(value)
-        end
-      end
-      nil
-    end
-
     def find_owner(comment)
       if admin_signed_in?
         comment.owner_type = 'Admin'
