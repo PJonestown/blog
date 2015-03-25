@@ -10,7 +10,6 @@ class CommentsController < ApplicationController
   end
 
   def new
-    #@parent_id = params.delete(:parent_id)
     @comment = Comment.new(:parent_id => params[:parnet_id])
   end
 
