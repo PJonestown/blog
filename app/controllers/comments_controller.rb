@@ -18,7 +18,7 @@ class CommentsController < ApplicationController
   end
 
   def create
-    @post = Post.find(post_params[:post_id])
+    @post = Post.find(params[:post_id])
     @comment = @post.comments.build(comment_params[:comment])
     find_owner(@comment)
 
