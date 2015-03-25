@@ -37,4 +37,11 @@
 
 <%=  render 'comments/form' %>
 
+<% @comments.each do |c| %>
+  <ul>
+    <li><%= c.owner %></li>
+    <li><%= c.body %></li>
+  </ul>
+<% end %>
+
 <%=  link_to 'Back', posts_path %>

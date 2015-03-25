@@ -10,7 +10,7 @@ class CommentsController < ApplicationController
   end
 
   def new
-    @comment = Comment.new(:parent_id => params[:parnet_id])
+    @comment = Comment.new
   end
 
 
