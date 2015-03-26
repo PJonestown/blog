@@ -37,4 +37,8 @@ class Commenter < ActiveRecord::Base
     end
     commenter
   end
+
+  def to_s
+    name
+  end
 end
