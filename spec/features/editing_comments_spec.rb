@@ -6,16 +6,18 @@ feature 'editing comments' do
   background do
     @new_post = create(:post)
     @commenter = create(:commenter)
-    @new_comment = create(:comment)
+    @comment = build(:comment)
+    commenter_sign_in(@commenter)
+    visit post_path(@new_post)
+    fill_in 'Body', with: @comment.body
+    click_button 'Create Comment'
   end
 
   context 'the correct commenter' do
 
-    background do
-      commenter_sign_in(@commenter)
-    end
-
     scenario 'edits the comment' do
+      visit post_path(@new_post)
+      expect(page).to have_content(@comment.body)
 
     end
 
