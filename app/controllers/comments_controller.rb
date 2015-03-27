@@ -17,6 +17,8 @@ class CommentsController < ApplicationController
   def edit
 
     #todo change the if statement
+    #todo consider checking owner_type. I think admins and commenters will be
+    #able to edit each others comments if they have the same id
     if commenter_signed_in? && current_commenter.id == @comment.owner_id
     elsif admin_signed_in? && current_admin.id == @comment.owner_id
     else
