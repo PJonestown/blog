@@ -41,9 +41,12 @@ feature 'editing comments' do
 
     end
     scenario 'does not edit the comment' do
-      expect(page).to eq(post_path(@new_post))
+      visit post_path(@new_post)
       expect(page).to have_content(@comment.body)
       expect(page).not_to have_link('Edit Comment')
+      visit edit_comment_path(2)
+      #todo what id?
+      save_and_open_page
 
 
     end

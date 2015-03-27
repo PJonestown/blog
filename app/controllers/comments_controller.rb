@@ -15,6 +15,13 @@ class CommentsController < ApplicationController
 
 
   def edit
+
+    #todo change the if statement
+    if admin_signed_in? || commenter_signed_in? && current_commenter.id == @comment.owner_id
+    else
+      redirect_to :back
+      flash[:alert] = 'No soup for you'
+    end
   end
 
   def create
