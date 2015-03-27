@@ -35,8 +35,6 @@ class CommentsController < ApplicationController
 
   def update
 
-    @post = Post.find(params[:post_id])
-
     respond_to do |format|
       if @comment.update(comment_params)
         format.html { redirect_to @comment, notice: 'Comment was successfully updated.' }
