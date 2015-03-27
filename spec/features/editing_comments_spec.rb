@@ -37,9 +37,14 @@ feature 'editing comments' do
       click_link 'Sign Out'
       visit post_path(@new_post)
       @unauthorized_commenter = create(:other_commenter)
+      commenter_sign_in(@unauthorized_commenter)
 
     end
     scenario 'does not edit the comment' do
+      expect(page).to eq(post_path(@new_post))
+      expect(page).to have_content(@comment.body)
+      expect(page).not_to have_link('Edit Comment')
+
 
     end
 
