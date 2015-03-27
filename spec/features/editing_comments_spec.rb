@@ -18,6 +18,7 @@ feature 'editing comments' do
     scenario 'edits the comment' do
       visit post_path(@new_post)
       expect(page).to have_content(@comment.body)
+      expect(page).to have_link('Edit Comment')
 
     end
 
