@@ -44,18 +44,28 @@ feature 'editing comments' do
       visit post_path(@new_post)
       expect(page).to have_content(@comment.body)
       expect(page).not_to have_link('Edit Comment')
-      visit edit_comment_path(2)
+      #visit edit_comment_path(2)
       #todo what id?
-      save_and_open_page
+      #save_and_open_page
 
 
     end
 
   end
 
-  context 'a guest user' do
-    scenario 'does not edit the comment' do
+  context 'Admin' do
+    background do
+     visit post_path(@new_post)
+     click_link 'Sign Out'
+     admin = create(:admin)
+     sign_in admin
 
+
+    end
+    scenario 'it edits the comment' do
+     visit post_path(@new_post)
+     expect(page).to have_content(@comment.body)
+     expect(page).to have_link('Edit Comment')
     end
 
   end

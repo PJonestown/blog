@@ -41,7 +41,8 @@
   <ul>
     <li><%= c.owner %></li>
     <li><%= c.body %></li>
-   <% if commenter_signed_in? and current_commenter.id == c.owner_id || admin_signed_in? %>
+    <% if commenter_signed_in? && current_commenter.id == c.owner_id ||
+      admin_signed_in? && current_admin.id == c.owner_id%>
      <li> <%= link_to 'Edit Comment', edit_comment_path(c) %> </li> 
    <% end %>
 
