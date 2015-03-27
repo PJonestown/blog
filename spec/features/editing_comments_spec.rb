@@ -20,7 +20,7 @@ feature 'editing comments' do
       expect(page).to have_content(@comment.body)
       click_link 'Edit Comment'
       fill_in 'Body', with: 'An edited comment'
-      click_button('Update Comment')
+      click_button 'Update Comment'
       expect(current_path).to eq(post_path(@new_post))
       expect(page).to have_content('An edited comment')
       expect(page).not_to have_content(@comment.body)
@@ -31,6 +31,14 @@ feature 'editing comments' do
   end
 
   context 'an incorrect commenter' do
+
+    background do
+      visit post_path(@new_post)
+      click_link 'Sign Out'
+      visit post_path(@new_post)
+      @unauthorized_commenter = create(:other_commenter)
+
+    end
     scenario 'does not edit the comment' do
 
     end
