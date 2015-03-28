@@ -19,6 +19,18 @@
       <p> <%= @post.body %> </p>
 
       <!-- Comments form -->
+      <div class='well well-lg'>
+
+        <%= simple_form_for([@post, @comment], class: 'form-vertical') do |f| %>
+          <h4>Leave a Comment</h4>
+          <div class="form-group">
+            <%= f.text_area :body, class: 'form-control', rows: '3' %>
+          <button type="submit" class="btn btn-primary">Submit</button>
+
+        <% end %>
+
+
+      </div>
 
       <%= form_for([@post, @comment]) do |f| %>
         <% if @comment.errors.any? %>
