@@ -6,4 +6,8 @@ class Admin < ActiveRecord::Base
 
   has_many :posts
   has_many :comments, :as => :owner
+
+  def to_s
+    "PJonestown"
+  end
 end
