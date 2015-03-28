@@ -1,4 +1,5 @@
 module ApplicationHelper
+
   def markdown(text)
     #avoid expectation error
     if text != nil

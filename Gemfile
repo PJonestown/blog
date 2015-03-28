@@ -31,6 +31,7 @@ gem 'omniauth-google'
 gem 'omniauth-github'
 
 gem 'redcarpet'
+gem 'rouge'
 
 group :development, :test do
   gem 'byebug'
