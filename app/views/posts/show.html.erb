@@ -19,15 +19,34 @@
       <p> <%= @post.body %> </p>
 
       <!-- Comments form -->
-      <div class="well">
-        <h4>Leave a Comment</h4>
-        <form role ="form">
-          <div class="form-group">
-            <textarea class="form-control" rows="3"></textarea>
+
+      <%= form_for([@post, @comment]) do |f| %>
+        <% if @comment.errors.any? %>
+          <div id="error_explanation">
+            <h2><%= pluralize(@comment.errors.count, "error") %> prohibited this comment from being saved:</h2>
+
+            <ul>
+            <% @comment.errors.full_messages.each do |message| %>
+              <li><%= message %></li>
+            <% end %>
+            </ul>
           </div>
-          <button type="submit" class="btn btn-primary">Submit</button>
-        </form>
-    </div>
+
+        <% end %>
+ 
+        <div class="well">
+          <h4>Leave a Comment</h4>
+          <form role ="form">
+            <div class="form-group">
+              <textarea class="form-control" rows="3"></textarea>
+              <h4> <%= f.label :Leave_a_Comment %><br> </h4>
+                <%= f.text_area :body %>
+            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+              <%= f.submit %>
+          </form>
+      </div>
+    <% end %>
   </div>
 </div>
 
