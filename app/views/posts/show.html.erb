@@ -16,7 +16,7 @@
       <h1><%=@post.title%></h1>
 
       <!-- Post -->
-      <p> <%= markdown(@post.body) %> </p>
+      <p> <%=markdown(@post.body) %> </p>
 
       <!-- Admin links -->
       <% if admin_signed_in? %>
