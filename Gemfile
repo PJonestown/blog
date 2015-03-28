@@ -38,6 +38,10 @@ group :development, :test do
   gem 'factory_girl_rails'
 end
 
+group :development do
+  gem 'better_errors'
+end
+
 group :test do
   gem 'faker'
   gem 'capybara'
