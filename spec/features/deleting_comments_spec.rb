@@ -54,7 +54,6 @@ feature 'deleting comments' do
 
     scenario 'deletes the comment' do
       expect(page).to have_content(@comment.body)
-      save_and_open_page
       click_link 'delete comment'
       expect(current_path).to eq(post_path(@new_post))
       expect(page).not_to have_content(@comment.body)
