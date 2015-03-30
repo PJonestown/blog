@@ -84,7 +84,7 @@
    <% end %>
     <% if commenter_signed_in? && current_commenter.id == c.owner_id ||
         admin_signed_in? %>
-      <li> <%= link_to 'delete', c, method: :delete, data: { confirm: 'Are you sure?' } %> </li>
+      <li> <%= link_to 'delete comment', c, method: :delete, data: { confirm: 'Are you sure?' } %> </li>
     <%end%>
   </ul>
 <% end %>
