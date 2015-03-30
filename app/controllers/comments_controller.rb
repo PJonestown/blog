@@ -57,10 +57,13 @@ class CommentsController < ApplicationController
   end
 
   def destroy
-    @comment.destroy
-    respond_to do |format|
-      format.html { redirect_to :back, notice: 'Comment was successfully destroyed.' }
-      format.json { head :no_content }
+    if commenter_signed_in? && current_commenter.id == @comment.owner_id ||
+        admin_signed_in?
+      @comment.destroy
+      respond_to do |format|
+        format.html { redirect_to :back, notice: 'Comment was successfully destroyed.' }
+        format.json { head :no_content }
+      end
     end
   end
 
