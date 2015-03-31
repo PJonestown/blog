@@ -10,14 +10,25 @@
 
       <!-- Title -->
       <h1><%=@post.title%></h1>
+   </row>
 
-      <!-- Post -->
-      <p> <%=markdown(@post.body) %> </p>
+   <article>
+     <div class="container">
+       <div class="row">
+         <div class="col-lg-8 col-lg-offest-2 col-md-8 col-md-offset-1">
+         
+           <!-- Post -->
+          <p> <%=markdown(@post.body) %> </p>
 
-      <!-- Admin links -->
-      <% if admin_signed_in? %>
-        <%= link_to 'Edit', edit_post_path(@post) %> |
-      <% end %>
+          <!-- Admin links -->
+          <% if admin_signed_in? %>
+            <%= link_to 'Edit', edit_post_path(@post) %> |
+          <% end %>
+        </div>
+      </div>
+    </article>
+
+    <div class="row">
 
       <!-- Comments form -->
       <div class='well well-lg'>
