@@ -31,28 +31,21 @@ class CommentsController < ApplicationController
     @post = Post.find(params[:post_id])
     @comment = @post.comments.build(comment_params)
     find_owner(@comment)
-
-    respond_to do |format|
-      if @comment.save
-        format.html { redirect_to :back, notice: 'Comment was successfully created.' }
-        format.json { render :show, status: :created, location: @comment }
-      else
-        format.html { render :new }
-        format.json { render json: @comment.errors, status: :unprocessable_entity }
-      end
+    if @comment.save
+      flash[:success] = 'Comment was successfully created.' 
+      redirect_to :back 
+    else
+      render :new 
     end
   end
 
   def update
 
-    respond_to do |format|
-      if @comment.update(comment_params)
-        format.html { redirect_to post_path(@comment.post_id), notice: 'Comment was successfully updated.' }
-        format.json { render :show, status: :ok, location: @comment }
-      else
-        format.html { render :edit }
-        format.json { render json: @comment.errors, status: :unprocessable_entity }
-      end
+    if @comment.update(comment_params)
+       flash[:success] = 'Comment was successfully updated.' 
+       redirect_to post_path(@comment.post_id)
+    else
+      render :back
     end
   end
 
@@ -60,10 +53,8 @@ class CommentsController < ApplicationController
     if commenter_signed_in? && current_commenter.id == @comment.owner_id ||
         admin_signed_in?
       @comment.destroy
-      respond_to do |format|
-        format.html { redirect_to :back, notice: 'Comment was successfully destroyed.' }
-        format.json { head :no_content }
-      end
+      flash[:success] = 'Comment was successfully destroyed.'
+      redirect_to :back
     end
   end
 
