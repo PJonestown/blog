@@ -2,6 +2,8 @@
 @import "bootstrap";
 
   .navbar-nav {
+    background: linear-gradient(to bottom, #0e2027, #0f171d);
+    height: 200px;
     width: 100%;
     text-align: center;
     > li {
@@ -10,8 +12,69 @@
     }
   }
 
-  .cuz {
-    margin-left: auto;
-    margin-right: auto;
+  .panel-heading {
+    height: 52px;
+    background: linear-gradient(to bottom, #0e2027, #0f171d);
+
   }
+
+  .panel-body {
+      box-shadow: 0 1.5px 4px rgba(0, 0, 0, 0.24), 0 1.5px 6px rgba(0, 0, 0, 0.12);
+    }
+
+
+  .panel-title {
+    font-size: 25px;
+      box-shadow: 0 3px 12px rgba(0, 0, 0, 0.23), 0 3px 12px rgba(0, 0, 0, 0.16);
+  }
+
+  .date_line {
+    background: #83c9d7;
+    height: 22px;
+      box-shadow: 0 3px 12px rgba(0, 0, 0, 0.23), 0 3px 12px rgba(0, 0, 0, 0.16);
+  }
+
+  .btn-read-more {
+    background: #83c9d7;
+    color: black !important;
+    float: right;
+    box-shadow: 0 3px 12px rgba(0, 0, 0, 0.23), 0 3px 12px rgba(0, 0, 0, 0.16);
+
+  }
+
+  .side-heading {
+    color:white;
+  }
+
+  .side-panel-divider {
+    background: #83c9d7;
+    height: 3px;
+      box-shadow: 0 3px 12px rgba(0, 0, 0, 0.23), 0 3px 12px rgba(0, 0, 0, 0.16);
+  }
+
+  .btn-read-more {
+    background: #83c9d7;
+    color: black !important;
+    float: right;
+    box-shadow: 0 3px 12px rgba(0, 0, 0, 0.23), 0 3px 12px rgba(0, 0, 0, 0.16);
+
+  }
+
+  .container {
+    margin-left: 62px;
+    margin-right: 62px;
+    padding-left: 5px;
+    padding-right: 5px;
+    width: 88%;
+  }
+
+  .navbar {
+    margin-left: 0;
+    margin-right: 0;
+  }
+
+
+
+
+
 

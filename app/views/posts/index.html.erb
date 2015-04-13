@@ -1,12 +1,70 @@
 <p id="notice"><%= notice %></p>
 
-<% @posts.each do |post| %>
-  <h3 class="text-center"><%= link_to post.title, post %></h3>
-    <% if admin_signed_in? %>
-      <p><%= link_to 'Edit', edit_post_path(post) %></p>
-      <p><%= link_to 'Destroy', post, method: :delete, data: { confirm: 'Are you sure?' } %></p>
-    <%end%>
-<%end%>
+<div class="container">
+  <div class="row">
+    <div class="col-md-8">
+        
+        <% @posts.each do |post| %>
+            <div class="panel panel-default">
+             <div class="panel-heading">
+                <h3 class="panel-title"><%=link_to post.title, post%></h3>
+              </div>
+              <div class="date_line">
+                1/2/34
+              </div>
+
+              <div class="panel-body">
+                <%= markdown(truncate(post.body, length: 220, separator: ' ')) %>
+
+                <%= link_to "Read more", post, :class=>"btn btn-read-more" %> 
+
+              </div>
+            </div>
+        <%end%>
+
+
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+    <div class="col-md-4 hidden-sm hidden-xs">
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <div class="side-heading">About me</div>
+        </div>
+        <div class="side-panel-divider"></div>
+        <div class="panel-body">
+          stuff 
+          more stuff
+        </div>
+      </div>
+
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <div class="side-heading">Popular Posts</div>
+        </div>
+        <div class="side-panel-divider"></div>
+        <div class="panel-body">
+          stuff 
+          more stuff
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+    </div>
+
 
 <% if admin_signed_in? %>
   <%= link_to 'New Post', new_post_path %>

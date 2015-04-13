@@ -1,0 +1,108 @@
+<div class="container">
+  <div class="row">
+
+      <!-- Blog Post Content Column -->
+      <div class="col-lg-8">
+      <!-- Title -->
+      <h1><%=@post.title%></h1>
+   </div>
+ </div>
+ </div> 
+
+<article>
+   <div class="container">
+       <div class="row">
+          <div class="col-lg-8 col-lg-offest-2 col-md-8 col-md-offset-1">
+         
+           <!-- Post -->
+            <p> <%=markdown(@post.body) %> </p>
+
+          <!-- Admin links -->
+            <% if admin_signed_in? %>
+            <%= link_to 'Edit', edit_post_path(@post) %> |
+          <% end %>
+        </div>
+
+      </div>
+
+    </article>
+
+    <div class="row">
+
+
+
+      <!-- Comments form -->
+      <div class='well well-lg'>
+
+        <!-- Move to partial. Remove submit button if nobody signed in
+        and show sign in links -->
+
+
+        <%= simple_form_for([@post, @comment], class: 'form-vertical') do |f| %>
+          
+          <h4><%="Leave a comment"%> 
+            <%if commenter_signed_in? %>
+                  <%=  "as #{current_commenter.name}" %>
+                  <small><%=link_to("(sign out)", destroy_commenter_session_path, :method => :delete) %></small>
+            <%elsif admin_signed_in? %>
+              <%=  "as Admin" %>
+            <%end%>
+      </h4>
+
+          <div class="form-group">
+            <%= f.text_area :body, class: 'form-control', rows: '3' %>
+          </div>
+          <% if commenter_signed_in? || admin_signed_in? %>
+            <button type="submit" class="btn btn-primary">Submit</button>
+          <% else %>
+            <%= "Sign In to comment" %>
+            <ul>
+              <li>
+                <A href= "/commenters/auth/twitter">Sign In with Twitter </A>
+              </li>
+              <li>
+                <A href= "/commenters/auth/github">Sign In with Github</A>
+              </li>
+            </ul>
+          <% end %>
+
+
+
+
+        <% end %>
+
+
+      </div>
+  </div>
+</div>
+
+<div class='well well-lg'
+
+<!-- COmments -->
+<% @comments.each do |c| %>
+  <div class="media">
+    <div class="media-object">
+      <h4 class="media-heading"><%=c.owner%></h4>
+      <%= markdown(c.body) %>
+    </div>
+  </div>
+
+  <ul>
+    <% if commenter_signed_in? && current_commenter.id == c.owner_id ||
+      admin_signed_in? && current_admin.id == c.owner_id%>
+      <li> <%= link_to 'Edit Comment', edit_comment_path(c) %> </li> 
+   <% end %>
+   <% if c.body != nil #todo ugly hack fix. I don't know why or what I'm passing in 
+        # but this is the second fix I've had to use for this bug. And why doesn't
+        # this effect edit comments too?>%>
+    <% if commenter_signed_in? && current_commenter.id == c.owner_id ||
+        admin_signed_in? %>
+      <li> <%= link_to 'delete comment', c, method: :delete, data: { confirm: 'Are you sure?' } %> </li>
+    <%end%>
+  <%end%>
+  </ul>
+<% end %>
+
+</div>
+
+<%=  link_to 'Back', posts_path %>
