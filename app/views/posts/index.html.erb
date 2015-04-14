@@ -14,7 +14,9 @@
         <div class='post-stuff'>
           <h3 class='post-title'><%=p.title%></h3>
           <%= markdown(truncate(p.body, length: 200, separator: ' ',)) %>
-          <%= link_to "Continue reading", '#' %>
+          <div class='why'>
+            <%= link_to "Continue reading", post_path(p), class: 'read-more' %>
+          </div>
           <div class='post-separator'> </div>
         </div>
       <%end%>
