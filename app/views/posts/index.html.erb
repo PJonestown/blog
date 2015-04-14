@@ -12,7 +12,7 @@
     <div class="col-sm-offset-2 col-sm-8">
       <%@posts.each do |p| %>
         <div class='post-stuff'>
-          <h3 class='post-title'><%=p.title%></h3>
+          <h3 class='post-title'><%=link_to p.title, post_path(p)%></h3>
           <%= markdown(truncate(p.body, length: 200, separator: ' ',)) %>
           <div class='why'>
             <%= link_to "Continue reading", post_path(p), class: 'read-more' %>
