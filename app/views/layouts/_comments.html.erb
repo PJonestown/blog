@@ -1,9 +1,10 @@
 <% @comments.each do |c| %>
   <div class="media">
     <div class="media-object">
-      <h4 class="media-heading"><%=c.owner%></h4>
+      <h4 class="media-heading comment-owner"><%=c.owner%></h4>
       <%= markdown(c.body) %>
     </div>
+    <div class=post-separator></div>
   </div>
 
   <ul>
@@ -13,7 +14,7 @@
    <% end %>
    <% if c.body != nil #todo ugly hack fix. I don't know why or what I'm passing in 
         # but this is the second fix I've had to use for this bug. And why doesn't
-        # this effect edit comments too?>%>
+        # this affect edit comments too?>%>
     <% if commenter_signed_in? && current_commenter.id == c.owner_id ||
         admin_signed_in? %>
       <li> <%= link_to 'delete comment', c, method: :delete, data: { confirm: 'Are you sure?' } %> </li>
