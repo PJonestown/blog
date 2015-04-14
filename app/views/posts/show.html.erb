@@ -1,34 +1,24 @@
 <div class="container">
-  <p>This is in container</p>
-  <div class="well">
-    <p>Container + well</p>
-    <div class="row">
-      <p>I am in row</p>
-      <div class="Well">
-        <p>I am in the same row in a well</p>
-      </div>
-    </div>
-    <div class="row">
-      <p>I am in a new row</p>
-    </div>
-  </div>
   <div class="row">
-    <div class="col-md-8">
-      <div class="well">
-        <p>My lg 7 well</p>
+    <div class="col-sm-offset-2 col-sm-8">
+      <div class="post-show">
+
+        <h3 class='show-title'><%=@post.title%></h3>
+        <%=markdown(@post.body)%>
       </div>
     </div>
-    <div class="col-md-4 hidden-sm hidden-xs">
-      <div class="well">
-        <p>My 5 well</P>
+    
+    <div class="col-sm-offset-2 col-sm-8">
+      <div class=top-sep></div>
+      <div class=top-sep></div>
+      <div class='leave-comment'>
+        <%=render 'layouts/leave_comment' %>
+        <%=render 'layouts/comments' %>
+
+
+        
       </div>
-      <div class="well">
-        <p>Muh other well</p>
     </div>
-  </div>
 
-
-
-    </div>
   </div>
 </div>

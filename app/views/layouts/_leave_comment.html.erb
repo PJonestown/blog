@@ -1,0 +1,33 @@
+
+<%= simple_form_for([@post, @comment], class: 'form-vertical') do |f| %>
+          
+          <h4><%="Leave a comment"%> 
+            <%if commenter_signed_in? %>
+                  <%=  "as #{current_commenter.name}" %>
+                  <small><%=link_to("(sign out)", destroy_commenter_session_path, :method => :delete) %></small>
+            <%elsif admin_signed_in? %>
+              <%=  "as Admin" %>
+            <%end%>
+      </h4>
+
+          <div class="form-group">
+            <%= f.text_area :body, class: 'form-control', rows: '3' %>
+          </div>
+          <% if commenter_signed_in? || admin_signed_in? %>
+            <button type="submit" class="btn btn-primary">Submit</button>
+          <% else %>
+            <%= "Sign In to comment" %>
+            <ul>
+              <li>
+                <A href= "/commenters/auth/twitter">Sign In with Twitter </A>
+              </li>
+              <li>
+                <A href= "/commenters/auth/github">Sign In with Github</A>
+              </li>
+            </ul>
+          <% end %>
+
+
+
+
+        <% end %>

@@ -2,14 +2,8 @@
 
 <div class="container">
   <div class="row">
-    <h1 class="pjonestown">Paul</h1>
-    <h1 class="pjonestown">Johnston</h1>
-    <p class="desc">traveller, learner, landlubber</p>
-    <div class="col-sm-offset-2 col-sm-8 top-bars">
-      <div class=top-sep></div>
-      <div class=top-sep></div>
-    </div>
     <div class="col-sm-offset-2 col-sm-8">
+
       <%@posts.each do |p| %>
         <div class='post-stuff'>
           <h3 class='post-title'><%=link_to p.title, post_path(p)%></h3>
@@ -20,6 +14,7 @@
           <div class='post-separator'> </div>
         </div>
       <%end%>
+
     </div>
   </div>
 </div>
