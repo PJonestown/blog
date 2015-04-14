@@ -2,68 +2,25 @@
 
 <div class="container">
   <div class="row">
-    <div class="col-md-8">
-        
-        <% @posts.each do |post| %>
-            <div class="panel panel-default">
-             <div class="panel-heading">
-                <h3 class="panel-title"><%=link_to post.title, post%></h3>
-              </div>
-              <div class="date_line">
-                1/2/34
-              </div>
-
-              <div class="panel-body">
-                <%= markdown(truncate(post.body, length: 220, separator: ' ')) %>
-
-                <%= link_to "Read more", post, :class=>"btn btn-read-more" %> 
-
-              </div>
-            </div>
-        <%end%>
-
-
+    <h1 class="pjonestown">Paul</h1>
+    <h1 class="pjonestown">Johnston</h1>
+    <p class="desc">traveller, learner, landlubber</p>
+    <div class="col-sm-offset-2 col-sm-8 top-bars">
+      <div class=top-sep></div>
+      <div class=top-sep></div>
     </div>
-
-
-
-
-
-
-
-
-
-
-
-
-    <div class="col-md-4 hidden-sm hidden-xs">
-      <div class="panel panel-default">
-        <div class="panel-heading">
-          <div class="side-heading">About me</div>
+    <div class="col-sm-offset-2 col-sm-8">
+      <%@posts.each do |p| %>
+        <div class='post-stuff'>
+          <h3 class='post-title'><%=p.title%></h3>
+          <%= markdown(truncate(p.body, length: 200, separator: ' ',)) %>
+          <%= link_to "Continue reading", '#' %>
+          <div class='post-separator'> </div>
         </div>
-        <div class="side-panel-divider"></div>
-        <div class="panel-body">
-          stuff 
-          more stuff
-        </div>
-      </div>
-
-      <div class="panel panel-default">
-        <div class="panel-heading">
-          <div class="side-heading">Popular Posts</div>
-        </div>
-        <div class="side-panel-divider"></div>
-        <div class="panel-body">
-          stuff 
-          more stuff
-        </div>
-      </div>
+      <%end%>
     </div>
   </div>
-
-
-
-    </div>
+</div>
 
 
 <% if admin_signed_in? %>
