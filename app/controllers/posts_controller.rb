@@ -42,7 +42,6 @@ class PostsController < ApplicationController
   end
 
   def destroy
-    #@post = current_admin.posts.find(params[:id])
     if admin_signed_in?
       @post.destroy
       flash[:success] = 'Post was successfully destroyed.'
