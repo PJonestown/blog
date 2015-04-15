@@ -39,6 +39,10 @@ class Commenter < ActiveRecord::Base
   end
 
   def to_s
-    name
+    if name.blank?
+      "No name provided"
+    else
+      name
+    end
   end
 end

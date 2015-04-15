@@ -1,10 +1,15 @@
 <% @comments.each do |c| %>
   <div class="media">
     <div class="media-object">
-      <h4 class="media-heading comment-owner"><%=c.owner%></h4>
+      <% if c.body != nil %>
+          <h4 class="media-heading comment-owner"><%=c.owner%></h4>
+      <%end%>
       <%= markdown(c.body) %>
     </div>
-    <div class=post-separator></div>
+
+
+
+
   </div>
 
   <ul>
@@ -20,5 +25,7 @@
       <li> <%= link_to 'delete comment', c, method: :delete, data: { confirm: 'Are you sure?' } %> </li>
     <%end%>
   <%end%>
-  </ul>
+</ul>    
+<div class=post-separator></div>
+
  <%end%>
