@@ -16,11 +16,9 @@ class CommentsController < ApplicationController
 
   def edit
 
-    #todo change the if statement
-    #todo consider checking owner_type. I think admins and commenters will be
-    #able to edit each others comments if they have the same id
-    if commenter_signed_in? && current_commenter.id == @comment.owner_id
-    elsif admin_signed_in? && current_admin.id == @comment.owner_id
+    #todo This smells awful. Also in #destrpy and _comments
+    if commenter_signed_in? && current_commenter.id == @comment.owner_id && @comment.owner_type == "Commenter"
+    elsif admin_signed_in? && current_admin.id == @comment.owner_id && @comment.owner_type == "Admin"
     else
       redirect_to :back
       flash[:alert] = 'No soup for you'
@@ -50,7 +48,7 @@ class CommentsController < ApplicationController
   end
 
   def destroy
-    if commenter_signed_in? && current_commenter.id == @comment.owner_id ||
+    if commenter_signed_in? && current_commenter.id == @comment.owner_id && @comment.owner_type == 'Commenter' ||
         admin_signed_in?
       @comment.destroy
       flash[:success] = 'Comment was successfully destroyed.'
