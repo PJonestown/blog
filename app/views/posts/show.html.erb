@@ -5,6 +5,12 @@
 
         <h3 class='show-title'><%=@post.title%></h3>
         <%=markdown(@post.body)%>
+        <% if admin_signed_in? %>
+          <%= link_to 'Delete Post', post_path(@post), method: :delete, data: { confirm: 'Are you sure?' } %>
+          <%= link_to 'Edit Post', edit_post_path(@post) %>
+       
+        <%end%>
+
       </div>
     </div>
     
