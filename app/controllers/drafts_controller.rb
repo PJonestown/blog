@@ -18,8 +18,7 @@ class DraftsController < ApplicationController
   end
 
   def create
-    @draft = Draft.new(draft_params)
-
+    @draft = current_admin.drafts.new(draft_params)
     if @draft.save
      redirect_to @draft, notice: 'Draft was successfully created.' 
     else
