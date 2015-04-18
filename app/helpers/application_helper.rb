@@ -7,7 +7,6 @@ module ApplicationHelper
       render_options = {
         filter_html: true,
         hard_wrap: true,
-        no_intra_emphasis: true,
         autolink: true,
 
       }
@@ -15,12 +14,12 @@ module ApplicationHelper
       renderer = RougeHTML.new(render_options)
 
       extensions = {
+        no_intra_emphasis: true,
         strikethrough: true,
         fenced_code_blocks: true,
         superscript: true,
         footnotes: true,
         quote: true,
-        underline: true
       }
 
       Redcarpet::Markdown.new(renderer, extensions).render(text).html_safe
