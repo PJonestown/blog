@@ -1,5 +1,5 @@
 
-<%= simple_form_for([@post, @comment], class: 'form-vertical') do |f| %>
+<%= simple_form_for([@post, @comment], remote: true, class: 'form-vertical') do |f| %>
           
           <h4><%="Leave a comment"%> 
             <%if commenter_signed_in? %>

@@ -30,8 +30,12 @@ class CommentsController < ApplicationController
     @comment = @post.comments.build(comment_params)
     find_owner(@comment)
     if @comment.save
-      flash[:success] = 'Comment was successfully created.' 
-      redirect_to :back 
+      respond_to do |format|
+        format.html { redirect_to @post }
+        format.js
+      end
+      #flash[:success] = 'Comment was successfully created.' 
+      #redirect_to :back 
     else
       render :new 
     end
