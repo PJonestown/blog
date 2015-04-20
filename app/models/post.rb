@@ -1,4 +1,9 @@
 class Post < ActiveRecord::Base
+
+  
+  scope :drafts, -> { where(draft: true) }
+  scope :published, -> { where(draft: false) }
+
   belongs_to :admin
 
   validates :title, :body, :admin, :presence => true

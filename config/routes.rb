@@ -1,9 +1,9 @@
 Rails.application.routes.draw do
   get 'about' => 'static_pages#about'
-
   get 'contact' => 'static_pages#contact'
+  get 'drafts' => 'posts#drafts'
 
-  resources :comments
+  resources :comments #probably delete this
 
   devise_for :commenters, 
     controllers: {omniauth_callbacks: "omniauth_callbacks" }

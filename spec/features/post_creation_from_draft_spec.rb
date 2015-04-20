@@ -1,3 +1,5 @@
+#todo why is this failing?
+
 require 'rails_helper'
 include LoginMacros
 
@@ -7,18 +9,16 @@ feature 'post creation' do
 
     background do
       @admin = create(:admin)
-      @draft= create(:draft)
+      @draft= create(:post)
       sign_in(@admin)
     end
 
-    it "Should create post and delete draft" do
+    it "Should change draft to published" do
 
-      visit edit_draft_path(@draft)
-      #click_button "Publish"
-      expect{
-        click_button "Publish"
-      }.to change(Draft, :count).by(1) &&
-           change(Post, :count).by(1)
+      visit edit_post_path(@draft)
+      save_and_open_page
+      click_button "Publish and save"
+      expect(@draft.draft).to eq(false)
     end
   end
 end
