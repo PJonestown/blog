@@ -18,14 +18,18 @@
     <div class="col-sm-offset-2 col-sm-8">
       <div class=top-sep></div>
       <div class=top-sep></div>
-      <div class='leave-comment'>
-        <%=render 'layouts/leave_comment' %>
-        <div class="top-bars">
-          <div class='top-sep'></div>
-          <div class='top-sep'></div>
+      <section id="comments-section">
+        <div class='leave-comment'>
+          <%=render 'layouts/leave_comment' %>
+          <div class="top-bars">
+            <div class='top-sep'></div>
+            <div class='top-sep'></div>
+          </div>
+          <div id='comments-list'>
+            <%= render @comments %>
+          </div>
         </div>
-        <%=render 'layouts/comments' %>
-      </div>
+      </section>
     </div>
 
   </div>

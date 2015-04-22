@@ -1,12 +1,28 @@
-<div class="media-body">
-  <h4 class="media-heading">
-    <%= comment.owner_type %>
-    <%= comment.owner_id%>
-  </h4>
-
-  <p>
-    <%= simple_format comment.body %>
-  </p>
-  <%= link_to "Reply", new_comment_path(:parent_id => comment) %>
-
+<div class="media">
+  <div class="media-object">
+    <% if comment.body != nil %>
+      <h4 class="media-heading comment-owner"><%=comment.owner%></h4>
+    <%end%>
+    <%= markdown(comment.body) %>
+  </div>
 </div>
+
+<ul>
+  <% if commenter_signed_in? && current_commenter.id == comment.owner_id && comment.owner_type == "Commenter"||
+      admin_signed_in? && current_admin.id == comment.owner_id%>
+    
+    <li> <%= link_to 'Edit Comment', edit_comment_path(comment) %> </li> 
+ <% end %>
+ 
+ <% if comment.body != nil #todo ugly hack fix. I don't know why or what I'm passing in 
+        # but this is the second fix I've had to use for this bug. And why doesn't
+        # this affect edit comments too?>%>
+  <% if commenter_signed_in? && current_commenter.id == comment.owner_id && comment.owner_type == "Commenter" ||
+        admin_signed_in? %>
+      
+    <li> <%= link_to 'Delete Comment', comment, method: :delete, data: { confirm: 'Are you sure?' } %> </li>
+  <%end%>
+<%end%>
+</ul>    
+<div class=post-separator></div>
+
