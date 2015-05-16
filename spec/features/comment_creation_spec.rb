@@ -2,16 +2,12 @@ require 'rails_helper'
 include LoginMacros
 
 feature 'comment creation' do
-
   context 'on posts' do
-
-
     background do
-      @new_post = create(:post)
+      @new_post = create(:published_post)
     end
 
     context 'commenter logged in' do
-
       background do
         @commenter = create(:commenter)
         commenter_sign_in(@commenter)
@@ -19,8 +15,6 @@ feature 'comment creation' do
 
       scenario 'adds a new comment' do
         visit post_path(@new_post)
-        #expect(page).to have_content("Signed in as #{@commenter.name} from 
-                                   #{@commenter.identities.provider}")
         expect(page).to have_link("sign out")
         fill_in 'comment_body', with: 'A brand new comment'
         click_button 'Submit'
@@ -46,7 +40,6 @@ feature 'comment creation' do
     end
 
     context 'guest user' do
-
       scenario 'does not add a comment' do
         visit post_path(@new_post)
         expect(page).to have_content 'Sign In to comment'
