@@ -16,9 +16,12 @@ feature 'post creation' do
     it "Should change draft to published" do
 
       visit edit_post_path(@draft)
-      save_and_open_page
+      expect(@draft.draft).to eq(true)
       click_button "Publish and save"
-      expect(@draft.draft).to eq(false)
+      sign_out
+      visit root_path
+      expect(page).to have_content(@draft.title)
+      
     end
   end
 end

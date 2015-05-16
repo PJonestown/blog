@@ -83,6 +83,5 @@ class CommentsController < ApplicationController
         comment.owner_id = current_commenter.id
       end
     end
-
 end
 
