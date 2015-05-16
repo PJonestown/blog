@@ -5,16 +5,13 @@ feature 'deleting a post' do
   background do
     admin = create(:admin)
     sign_in admin
-
-    @my_post = build(:post)
-    new_post(@my_post.title, @my_post.body)
-
+    @my_post = create(:published_post)
   end
 
   context 'logged in admin' do
     scenario 'it deletes the post' do
-      visit root_path
-      click_link 'Destroy'
+      visit post_path(@my_post)
+      click_link 'Delete Post'
       expect(page).to have_content('Post was successfully destroyed')
       expect(page).not_to have_content(@my_post.title)
     end
