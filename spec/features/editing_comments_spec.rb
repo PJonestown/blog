@@ -4,7 +4,7 @@ include LoginMacros
 feature 'editing comments' do
 
   background do
-    @new_post = create(:post)
+    @new_post = create(:published_post)
     @commenter = create(:commenter)
     @comment = build(:comment)
     commenter_sign_in(@commenter)
@@ -14,7 +14,6 @@ feature 'editing comments' do
   end
 
   context 'the correct commenter' do
-
     scenario 'edits the comment' do
       visit post_path(@new_post)
       expect(page).to have_content(@comment.body)
@@ -24,33 +23,22 @@ feature 'editing comments' do
       expect(current_path).to eq(post_path(@new_post))
       expect(page).to have_content('An edited comment')
       expect(page).not_to have_content(@comment.body)
-
-
     end
-
   end
 
   context 'an incorrect commenter' do
-
     background do
       visit post_path(@new_post)
       click_link 'sign out'
       visit post_path(@new_post)
       @unauthorized_commenter = create(:other_commenter)
       commenter_sign_in(@unauthorized_commenter)
-
     end
+
     scenario 'does not edit the comment' do
       visit post_path(@new_post)
       expect(page).to have_content(@comment.body)
       expect(page).not_to have_link('Edit Comment')
-      #visit edit_comment_path(2)
-      #todo what id?
-      #save_and_open_page
-
-
     end
-
   end
-
 end
