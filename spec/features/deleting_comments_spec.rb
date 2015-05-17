@@ -2,9 +2,8 @@ require 'rails_helper'
 include LoginMacros
 
 feature 'deleting comments' do
-
   background do
-    @new_post = create(:post)
+    @new_post = create(:published_post)
     @commenter = create(:commenter)
     @comment = build(:comment)
     commenter_sign_in(@commenter)
@@ -14,18 +13,16 @@ feature 'deleting comments' do
   end
 
   context 'the correct commenter' do
-
     scenario 'deletes the comment' do
       visit post_path(@new_post)
       expect(page).to have_content(@comment.body)
-      click_link 'delete comment'
+      click_link 'Delete Comment'
       expect(current_path).to eq(post_path(@new_post))
       expect(page).not_to have_content(@comment.body)
     end
   end
 
   context 'an incorrect commenter' do
-
     background do
       visit post_path(@new_post)
       click_link 'sign out'
@@ -37,13 +34,11 @@ feature 'deleting comments' do
     scenario 'does not delete the comment' do
       visit post_path(@new_post)
       expect(page).to have_content(@comment.body)
-      expect(page).not_to have_link('delete comment')
+      expect(page).not_to have_link('Delete Comment')
     end
   end
 
-
   context 'admin' do
-
     background do
       visit post_path(@new_post)
       click_link 'sign out'
@@ -54,13 +49,10 @@ feature 'deleting comments' do
 
     scenario 'deletes the comment' do
       expect(page).to have_content(@comment.body)
-      click_link 'delete comment'
+      click_link 'Delete Comment'
       expect(current_path).to eq(post_path(@new_post))
       expect(page).not_to have_content(@comment.body)
-
     end
-
-
   end
 end
 
