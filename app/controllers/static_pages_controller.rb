@@ -4,4 +4,7 @@ class StaticPagesController < ApplicationController
 
   def contact
   end
+
+  def portfolio
+  end
 end
