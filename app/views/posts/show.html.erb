@@ -2,19 +2,15 @@
   <div class="row">
     <div class="col-sm-offset-2 col-sm-8">
       <div class="post-show">
-
         <h3 class='show-title'><%=@post.title%></h3>
         <%=markdown(@post.body)%>
-        <p> Draft:  <%= @post.draft? %></p>
         <% if admin_signed_in? %>
+          <p> Draft:  <%= @post.draft? %></p>
           <%= link_to 'Delete Post', post_path(@post), method: :delete, data: { confirm: 'Are you sure?' } %>
           <%= link_to 'Edit Post', edit_post_path(@post) %>
-       
         <%end%>
-
       </div>
     </div>
-    
     <div class="col-sm-offset-2 col-sm-8">
       <div class=top-sep></div>
       <div class=top-sep></div>
