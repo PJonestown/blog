@@ -6,6 +6,10 @@ Joking aside, this was my first non-tutorial rails app.
 
 I gained a better understanding of reading documentation, solving problems the rails way, and a familiarity with CRUD and MVC architecture.
 
+## Explore the app
+
+https://fathomless-cove-3261.herokuapp.com/
+
 ## Configuration
 
 * Download or clone the repo
@@ -82,9 +86,9 @@ I never bothered to re-factor. I often didn't even bother to delete commented ou
 
 I rationalized that I'd take care of it later, but I quickly learned just how fast things can get out of hand.
 
- ## License
+## License
 
- The MIT License (MIT)
+The MIT License (MIT)
 Copyright (c) 2016 Paul Johnston
 
 Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
